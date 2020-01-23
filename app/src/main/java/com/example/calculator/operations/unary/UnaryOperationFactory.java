@@ -1,5 +1,6 @@
 package com.example.calculator.operations.unary;
 
+import com.example.calculator.R;
 import com.example.calculator.exceptions.OperationNotFoundException;
 import com.example.calculator.operations.Operation;
 import com.example.calculator.operations.OperationFactory;
@@ -12,20 +13,20 @@ public class UnaryOperationFactory extends OperationFactory {
     }
 
     @Override
-    public Operation getOperation(String type) throws OperationNotFoundException {
-        switch (type) {
-            case "sinus":
+    public Operation getOperation(int id) throws OperationNotFoundException {
+        switch (id) {
+            case R.id.sinus:
                 return new SinusOperation(param);
-            case "cosinus":
+            case R.id.cosinus:
                 return new CosinusOperation(param);
-            case "tangens":
+            case R.id.tangens:
                 return new TangensOperation(param);
-            case "cotangens":
+            case R.id.cotangens:
                 return new CotangensOperation(param);
-            case "sqrt":
+            case R.id.sqrt:
                 return new SqrtOperation(param);
             default:
-                throw new OperationNotFoundException(type);
+                throw new OperationNotFoundException("Not found: " +id);
         }
     }
 }

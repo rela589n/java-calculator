@@ -1,5 +1,6 @@
 package com.example.calculator.operations.binary;
 
+import com.example.calculator.exceptions.DivisionByZeroException;
 import com.example.calculator.operations.Operation;
 
 public abstract class BinaryOperation extends Operation {

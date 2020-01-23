@@ -55,8 +55,9 @@
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:id="@+id/divide"
                 android:text="@string/divide"
-                android:onClick="onOperationClick" tools:ignore="ButtonStyle"/>
+                android:onClick="onBinaryOperationClick" tools:ignore="ButtonStyle"/>
     </LinearLayout>
     <LinearLayout
             android:layout_width="match_parent"
@@ -84,7 +85,8 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:text="@string/multiplicate"
-                android:onClick="onOperationClick" tools:ignore="ButtonStyle"/>
+                android:id="@+id/multiplicate"
+                android:onClick="onBinaryOperationClick" tools:ignore="ButtonStyle"/>
     </LinearLayout>
     <LinearLayout
             android:layout_width="match_parent"
@@ -112,7 +114,8 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:text="@string/minus"
-                android:onClick="onOperationClick" tools:ignore="ButtonStyle"/>
+                android:id="@+id/minus"
+                android:onClick="onBinaryOperationClick" tools:ignore="ButtonStyle"/>
     </LinearLayout>
     <LinearLayout
             android:layout_width="match_parent"
@@ -133,14 +136,16 @@
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:text="@string/plus"
-                android:onClick="onOperationClick" tools:ignore="ButtonStyle"/>
+                android:text="@string/equals"
+                android:onClick="onFunctionalKeyClick" tools:ignore="ButtonStyle"/>
+
         <Button
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:text="@string/equals"
-                android:onClick="onFunctionalKeyClick" tools:ignore="ButtonStyle"/>
+                android:text="@string/plus"
+                android:id="@+id/plus"
+                android:onClick="onBinaryOperationClick" tools:ignore="ButtonStyle"/>
     </LinearLayout>
 
     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Додаткові функції:"/>
@@ -154,25 +159,29 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:text="@string/sinus"
-                android:onClick="onOperationClick" tools:ignore="ButtonStyle"/>
+                android:id="@+id/sinus"
+                android:onClick="onUnaryOperationClick" tools:ignore="ButtonStyle"/>
         <Button
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:text="@string/cosinus"
-                android:onClick="onOperationClick" tools:ignore="ButtonStyle"/>
+                android:id="@+id/cosinus"
+                android:onClick="onUnaryOperationClick" tools:ignore="ButtonStyle"/>
         <Button
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:text="@string/tangens"
-                android:onClick="onOperationClick" tools:ignore="ButtonStyle"/>
+                android:id="@+id/tangens"
+                android:onClick="onUnaryOperationClick" tools:ignore="ButtonStyle"/>
         <Button
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:text="@string/cotangens"
-                android:onClick="onOperationClick" tools:ignore="ButtonStyle"/>
+                android:id="@+id/cotangens"
+                android:onClick="onUnaryOperationClick" tools:ignore="ButtonStyle"/>
 
     </LinearLayout>
 
@@ -184,25 +193,29 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:text="@string/sqrt"
-                android:onClick="onOperationClick" tools:ignore="ButtonStyle"/>
+                android:id="@+id/sqrt"
+                android:onClick="onUnaryOperationClick" tools:ignore="ButtonStyle"/>
         <Button
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:text="@string/power"
-                android:onClick="onOperationClick" tools:ignore="ButtonStyle"/>
+                android:id="@+id/power"
+                android:onClick="onBinaryOperationClick" tools:ignore="ButtonStyle"/>
         <Button
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:text="@string/log"
-                android:onClick="onOperationClick" tools:ignore="ButtonStyle"/>
+                android:id="@+id/log"
+                android:onClick="onBinaryOperationClick" tools:ignore="ButtonStyle"/>
         <Button
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:text="@string/modulo"
-                android:onClick="onOperationClick" tools:ignore="ButtonStyle"/>
+                android:id="@+id/modulo"
+                android:onClick="onBinaryOperationClick" tools:ignore="ButtonStyle"/>
 
     </LinearLayout>
 

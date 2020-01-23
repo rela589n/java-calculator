@@ -1,5 +1,7 @@
 package com.example.calculator.operations.binary;
 
+import com.example.calculator.exceptions.DivisionByZeroException;
+
 public class DivisionOperation extends BinaryOperation {
     public DivisionOperation(Double value1, Double value2) {
         super(value1, value2);
