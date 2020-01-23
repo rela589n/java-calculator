@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools" android:id="@+id/activity_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+    <LinearLayout
+            android:id="@+id/result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <TextView
+                android:id="@+id/bufferField"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textSize="20sp"
+                android:layout_height="wrap_content"/>
+        <TextView
+                android:id="@+id/operationField"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textSize="20sp"
+                android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <EditText
+            android:id="@+id/inputField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="phone"/>
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp">
+        <Button
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="@string/_7"
+                android:onClick="onNumberClick" tools:ignore="ButtonStyle"/>
+        <Button
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="@string/_8"
+                android:onClick="onNumberClick" tools:ignore="ButtonStyle"/>
+        <Button
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="@string/_9"
+                android:onClick="onNumberClick" tools:ignore="ButtonStyle"/>
+        <Button
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="@string/divide"
+                android:onClick="onOperationClick" tools:ignore="ButtonStyle"/>
+    </LinearLayout>
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <Button
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="@string/_4"
+                android:onClick="onNumberClick" tools:ignore="ButtonStyle"/>
+        <Button
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="@string/_5"
+                android:onClick="onNumberClick" tools:ignore="ButtonStyle"/>
+        <Button
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="@string/_6"
+                android:onClick="onNumberClick" tools:ignore="ButtonStyle"/>
+        <Button
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="@string/multiplicate"
+                android:onClick="onOperationClick" tools:ignore="ButtonStyle"/>
+    </LinearLayout>
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <Button
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="@string/_1"
+                android:onClick="onNumberClick" tools:ignore="ButtonStyle"/>
+        <Button
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="@string/_2"
+                android:onClick="onNumberClick" tools:ignore="ButtonStyle"/>
+        <Button
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="@string/_3"
+                android:onClick="onNumberClick" tools:ignore="ButtonStyle"/>
+        <Button
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="@string/minus"
+                android:onClick="onOperationClick" tools:ignore="ButtonStyle"/>
+    </LinearLayout>
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <Button
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="@string/_0"
+                android:onClick="onNumberClick" tools:ignore="ButtonStyle"/>
+        <Button
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="@string/point"
+                android:onClick="onNumberClick" tools:ignore="ButtonStyle"/>
+        <Button
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="@string/plus"
+                android:onClick="onOperationClick" tools:ignore="ButtonStyle"/>
+        <Button
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="@string/equals"
+                android:onClick="onOperationClick" tools:ignore="ButtonStyle"/>
+    </LinearLayout>
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Додаткові функції:"/>
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <Button
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="@string/sinus"
+                android:onClick="onOperationClick" tools:ignore="ButtonStyle"/>
+        <Button
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="@string/cosinus"
+                android:onClick="onOperationClick" tools:ignore="ButtonStyle"/>
+        <Button
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="@string/tangens"
+                android:onClick="onOperationClick" tools:ignore="ButtonStyle"/>
+        <Button
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="@string/cotangens"
+                android:onClick="onOperationClick" tools:ignore="ButtonStyle"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <Button
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="@string/sqrt"
+                android:onClick="onOperationClick" tools:ignore="ButtonStyle"/>
+        <Button
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="@string/power"
+                android:onClick="onOperationClick" tools:ignore="ButtonStyle"/>
+        <Button
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="@string/log"
+                android:onClick="onOperationClick" tools:ignore="ButtonStyle"/>
+        <Button
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="@string/modulo"
+                android:onClick="onOperationClick" tools:ignore="ButtonStyle"/>
+
+    </LinearLayout>
+
+</LinearLayout>
