@@ -10,7 +10,10 @@ public class DivisionOperation extends BinaryOperation {
     }
 
     @Override
-    protected Double doEvaluate(Double value1, Double value2) {
+    protected Double doEvaluate(Double value1, Double value2) throws DivisionByZeroException {
+        if (value2 == 0.0) {
+            throw new DivisionByZeroException();
+        }
         return value1 / value2;
     }
 }

@@ -1,6 +1,7 @@
 package com.example.calculator.operations.binary;
 
 import android.widget.TextView;
+import com.example.calculator.exceptions.DivisionByZeroException;
 import com.example.calculator.operations.Operation;
 
 public abstract class BinaryOperation extends Operation {
@@ -13,12 +14,12 @@ public abstract class BinaryOperation extends Operation {
     }
 
     @Override
-    public Double evaluate() {
+    public Double evaluate() throws DivisionByZeroException {
         Double first = clean(textView1.getText());
         Double second = clean(textView2.getText());
 
         return doEvaluate(first, second);
     }
 
-    protected abstract Double doEvaluate(Double value1, Double value2);
+    protected abstract Double doEvaluate(Double value1, Double value2) throws DivisionByZeroException;
 }

@@ -8,7 +8,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import com.example.calculator.exceptions.DivisionByZeroException;
-import com.example.calculator.exceptions.NullOperandException;
 import com.example.calculator.exceptions.OperationNotFoundException;
 import com.example.calculator.operations.NullOperation;
 import com.example.calculator.operations.Operation;
@@ -46,10 +45,21 @@ public class MainActivity extends AppCompatActivity {
 
         switch (btn.getId()) {
             case R.id.equals:
-                Double result = this.lastOperation.evaluate();
-                setFirstOperand(result);
+                try {
+                    Double result = this.lastOperation.evaluate();
+                    setFirstOperand(result);
+
+                    //this.lastOperation = new NothingOperation(this.firstOperand);
+                    this.lastOperation = NullOperation.getInstance();
+                } catch (DivisionByZeroException e) {
+                    this.clear();
+                }
+                catch (Exception e) {
+
+                }
                 setSecondOperand(null);
-                this.lastOperation = NullOperation.getInstance();
+                //this.lastOperation =
+                //this.lastOperation = NullOperation.getInstance();
                 this.operationField.setText("");
 
                 break;
@@ -68,14 +78,28 @@ public class MainActivity extends AppCompatActivity {
         try {
             Double result = this.lastOperation.evaluate();
             setFirstOperand(result);
+        }
+        catch (NullPointerException e) {
 
+        }
+        catch (DivisionByZeroException e) {
+            this.clear();
+        }
+        catch (Exception e) {
+            //Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG);
+        }
+        try {
             setSecondOperand(newOperation.evaluate());
-        } catch (Exception e) {
-            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG);
+            this.lastOperation = newOperation;
+            this.operationField.setText(button.getText());
+        }
+        catch (DivisionByZeroException e) {
+            this.clear();
+        }
+        catch (NullPointerException e) {
+
         }
 
-        this.lastOperation = newOperation;
-        this.operationField.setText(button.getText());
     }
 
     public void onBinaryOperationClick(View view) throws OperationNotFoundException {
@@ -86,7 +110,17 @@ public class MainActivity extends AppCompatActivity {
         try {
             Double result = this.lastOperation.evaluate();
             setFirstOperand(result);
-        } catch (Exception e) {
+        }
+        catch (DivisionByZeroException e) {
+            this.clear();
+        }
+        catch (NullPointerException e) {
+            String text = this.secondOperand.getText().toString();
+            if (text.length() != 0 ) {
+                this.firstOperand.setText(text);
+            }
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
         setSecondOperand(null);
@@ -104,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setFirstOperand(Double firstOperandVal) {
-        String text = (firstOperandVal == null) ? secondOperand.getText().toString() : doubleToText(firstOperandVal);
+        String text = doubleToText(firstOperandVal);
 
         this.firstOperand.setText(text);
     }
@@ -126,9 +160,16 @@ public class MainActivity extends AppCompatActivity {
         this.lastOperation = NullOperation.getInstance();
     }
 
-    public void onEraseClick(View view) {
+    private void clear() {
         String text = this.secondOperand.getText().toString();
+        if (text.length() == 0) {
+            text = " ";
+        }
         this.secondOperand.setText(text.substring(0, text.length() - 1));
         placeCursorToEnd(this.secondOperand);
+    }
+
+    public void onEraseClick(View view) {
+        this.clear();
     }
 }

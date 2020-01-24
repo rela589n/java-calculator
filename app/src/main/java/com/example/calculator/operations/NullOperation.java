@@ -1,11 +1,14 @@
 package com.example.calculator.operations;
 
+import com.example.calculator.exceptions.NullOperandException;
+
 public class NullOperation extends Operation {
     private static NullOperation instance = null;
 
     @Override
     public Double evaluate() {
-        return null;
+        throw new NullPointerException("Default operation");
+//        return null;
     }
 
     private NullOperation() {
