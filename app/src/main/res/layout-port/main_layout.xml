@@ -88,7 +88,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:text="@string/multiplicate"
-                android:id="@+id/multiplicate"
+                android:id="@+id/multiply"
                 android:onClick="onBinaryOperationClick" tools:ignore="ButtonStyle"/>
     </LinearLayout>
     <LinearLayout

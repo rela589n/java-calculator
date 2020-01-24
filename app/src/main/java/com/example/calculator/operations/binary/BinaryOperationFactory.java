@@ -1,12 +1,10 @@
 package com.example.calculator.operations.binary;
 
-import android.content.Context;
 import android.widget.TextView;
 import com.example.calculator.R;
 import com.example.calculator.exceptions.OperationNotFoundException;
 import com.example.calculator.operations.Operation;
 import com.example.calculator.operations.OperationFactory;
-import com.example.calculator.operations.unary.*;
 
 public class BinaryOperationFactory extends OperationFactory {
     protected TextView param1;
@@ -33,7 +31,7 @@ public class BinaryOperationFactory extends OperationFactory {
                 return new PlusOperation(param1, param2);
             case R.id.divide:
                 return new DivisionOperation(param1, param2);
-            case R.id.multiplicate:
+            case R.id.multiply:
                 return new MultiplicationOperation(param1, param2);
 
             default:
