@@ -1,17 +1,19 @@
 package com.example.calculator.operations.unary;
 
+import android.widget.TextView;
 import com.example.calculator.operations.Operation;
 
 public abstract class UnaryOperation extends Operation {
-    protected Double param;
+    protected TextView param;
 
-    public UnaryOperation(Double param) {
+    public UnaryOperation(TextView param) {
         this.param = param;
     }
 
     @Override
     public Double evaluate() {
-        return doEvaluate(param);
+        Double paramV = Double.parseDouble(param.getText().toString());
+        return doEvaluate(paramV);
     }
 
     protected abstract Double doEvaluate(Double param);

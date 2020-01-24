@@ -1,7 +1,10 @@
 package com.example.calculator.operations.unary;
 
+import android.widget.TextView;
+
 public class CosinusOperation extends UnaryOperation {
-    public CosinusOperation(Double param) {
+
+    public CosinusOperation(TextView param) {
         super(param);
     }
 

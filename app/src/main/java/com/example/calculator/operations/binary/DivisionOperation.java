@@ -1,10 +1,12 @@
 package com.example.calculator.operations.binary;
 
+import android.widget.TextView;
 import com.example.calculator.exceptions.DivisionByZeroException;
 
 public class DivisionOperation extends BinaryOperation {
-    public DivisionOperation(Double value1, Double value2) {
-        super(value1, value2);
+
+    public DivisionOperation(TextView textView1, TextView textView2) {
+        super(textView1, textView2);
     }
 
     @Override

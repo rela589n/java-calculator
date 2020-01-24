@@ -1,11 +1,13 @@
 package com.example.calculator.operations.binary;
 
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import com.example.calculator.R;
 
 public class AscensionOperation extends BinaryOperation {
-    public AscensionOperation(Double value1, Double value2) {
-        super(value1, value2);
+
+    public AscensionOperation(TextView textView1, TextView textView2) {
+        super(textView1, textView2);
     }
 
     @Override

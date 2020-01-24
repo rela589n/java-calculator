@@ -1,14 +1,15 @@
 package com.example.calculator.operations.unary;
 
+import android.widget.TextView;
 import com.example.calculator.R;
 import com.example.calculator.exceptions.OperationNotFoundException;
 import com.example.calculator.operations.Operation;
 import com.example.calculator.operations.OperationFactory;
 
 public class UnaryOperationFactory extends OperationFactory {
-    protected Double param;
+    protected TextView param;
 
-    public UnaryOperationFactory(Double param) {
+    public UnaryOperationFactory(TextView param) {
         this.param = param;
     }
 

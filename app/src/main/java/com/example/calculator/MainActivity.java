@@ -16,12 +16,9 @@ import com.example.calculator.operations.binary.BinaryOperationFactory;
 import com.example.calculator.operations.unary.UnaryOperationFactory;
 
 public class MainActivity extends AppCompatActivity {
-    private TextView bufferField;
+    private TextView firstOperand;
+    private EditText secondOperand;
     private TextView operationField;
-    private EditText inputField;
-
-    private Double firstOperand = null;
-    private Double secondOperand = null;
 
     private Operation lastOperation = new NullOperation();
 
@@ -33,12 +30,12 @@ public class MainActivity extends AppCompatActivity {
 //            inputField.setText("");
 //        }
 
-        inputField.append(btn.getText());
+        secondOperand.append(btn.getText());
     }
 
     private void evaluateSecondOperand() throws NumberFormatException {
-        String text = inputField.getText().toString().trim().replace(',', '.');
-        this.secondOperand = (text.length() == 0) ? null : Double.parseDouble(text);
+//        String text = inputField.getText().toString().trim().replace(',', '.');
+//        this.secondOperand = (text.length() == 0) ? null : Double.parseDouble(text);
     }
 
     public void onOperationClick(View view) throws Exception {
@@ -85,12 +82,12 @@ public class MainActivity extends AppCompatActivity {
             case "=":
 
 //                try {
-                evaluateSecondOperand();
+//                evaluateSecondOperand();
 //                    String result = performOperation(firstOperand, lastOperation, secondOperand).toString();
 //                setOperation();
-                setFirstOperand(null);
+//                setFirstOperand(null);
 //                    inputField.setText(result);
-                placeCursorToEnd(inputField);
+//                placeCursorToEnd(inputField);
 //                } catch (NumberFormatException | NullOperandException | DivisionByZeroException | NotSupportedOperation e) {
 //                    inputField.setText("");
 //                }
@@ -112,20 +109,20 @@ public class MainActivity extends AppCompatActivity {
     public void onBinaryOperationClick(View view) throws OperationNotFoundException {
         Button button = (Button) view;
         OperationFactory factory = new BinaryOperationFactory(firstOperand, secondOperand);
-        Operation op = factory.getOperation(button.getId());
+        Operation newOperation = factory.getOperation(button.getId());
 
-        evaluateSecondOperand();
+//        evaluateSecondOperand();
         Double result = this.lastOperation.evaluate();
         setFirstOperand(result);
+        setSecondOperand(null);
 
-        this.lastOperation = op;
+        this.lastOperation = newOperation;
         this.operationField.setText(button.getText());
     }
 
     public void setOperation(Operation operation) {
         this.operationField.setText(operation.toString());
-        this.inputField.setText("");
-        operation.getClass();
+        this.secondOperand.setText("");
         this.lastOperation = operation;
     }
 
@@ -134,18 +131,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setSecondOperand(Double secondOperandVal) {
-        this.secondOperand = secondOperandVal;
-        this.inputField.setText(doubleToText(secondOperandVal));
+        this.secondOperand.setText(doubleToText(secondOperandVal));
     }
 
     public void setFirstOperand(Double firstOperandVal) {
         if (firstOperandVal == null) {
-            firstOperandVal = secondOperand;
-            setSecondOperand(null);
+            firstOperandVal = Double.parseDouble(secondOperand.getText().toString());
+//            setSecondOperand(null);
         }
 
-        this.firstOperand = firstOperandVal;
-        this.bufferField.setText(doubleToText(firstOperandVal));
+        this.firstOperand.setText(doubleToText(firstOperandVal));
     }
 
 //    private Double performOperation()
@@ -181,8 +176,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_layout);
 
-        this.bufferField = findViewById(R.id.bufferField);
+        this.firstOperand = findViewById(R.id.bufferField);
         this.operationField = (TextView) findViewById(R.id.operationField);
-        this.inputField = findViewById(R.id.inputField);
+        this.secondOperand = findViewById(R.id.inputField);
     }
 }

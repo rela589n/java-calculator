@@ -1,8 +1,11 @@
 package com.example.calculator.operations.binary;
 
+import android.widget.TextView;
+
 public class PlusOperation extends BinaryOperation {
-    public PlusOperation(Double value1, Double value2) {
-        super(value1, value2);
+
+    public PlusOperation(TextView textView1, TextView textView2) {
+        super(textView1, textView2);
     }
 
     @Override

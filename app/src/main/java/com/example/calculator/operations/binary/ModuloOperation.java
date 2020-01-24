@@ -1,8 +1,11 @@
 package com.example.calculator.operations.binary;
 
+import android.widget.TextView;
+
 public class ModuloOperation extends BinaryOperation {
-    public ModuloOperation(Double value1, Double value2) {
-        super(value1, value2);
+
+    public ModuloOperation(TextView textView1, TextView textView2) {
+        super(textView1, textView2);
     }
 
     @Override

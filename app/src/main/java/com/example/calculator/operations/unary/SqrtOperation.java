@@ -1,7 +1,10 @@
 package com.example.calculator.operations.unary;
 
+import android.widget.TextView;
+
 public class SqrtOperation extends UnaryOperation {
-    public SqrtOperation(Double param) {
+
+    public SqrtOperation(TextView param) {
         super(param);
     }
 

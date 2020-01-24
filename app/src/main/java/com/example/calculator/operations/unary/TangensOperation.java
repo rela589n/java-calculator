@@ -1,7 +1,10 @@
 package com.example.calculator.operations.unary;
 
+import android.widget.TextView;
+
 public class TangensOperation extends UnaryOperation {
-    public TangensOperation(Double param) {
+
+    public TangensOperation(TextView param) {
         super(param);
     }
 

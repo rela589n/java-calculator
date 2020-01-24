@@ -1,6 +1,7 @@
 package com.example.calculator.operations.binary;
 
 import android.content.Context;
+import android.widget.TextView;
 import com.example.calculator.R;
 import com.example.calculator.exceptions.OperationNotFoundException;
 import com.example.calculator.operations.Operation;
@@ -8,10 +9,10 @@ import com.example.calculator.operations.OperationFactory;
 import com.example.calculator.operations.unary.*;
 
 public class BinaryOperationFactory extends OperationFactory {
-    protected Double param1;
-    protected Double param2;
+    protected TextView param1;
+    protected TextView param2;
 
-    public BinaryOperationFactory(Double param1, Double param2) {
+    public BinaryOperationFactory(TextView param1, TextView param2) {
         this.param1 = param1;
         this.param2 = param2;
     }
