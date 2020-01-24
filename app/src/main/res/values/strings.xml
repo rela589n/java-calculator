@@ -24,4 +24,7 @@
     <string name="power">^</string>
     <string name="log">log</string>
     <string name="modulo">%</string>
+    <string name="clear">AC</string>
+    <string name="erase">⌫</string>
+    <string name="pi">𝛑</string>
 </resources>

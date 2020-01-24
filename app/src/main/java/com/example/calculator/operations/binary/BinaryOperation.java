@@ -14,8 +14,8 @@ public abstract class BinaryOperation extends Operation {
 
     @Override
     public Double evaluate() {
-        Double first = Double.parseDouble(textView1.getText().toString());
-        Double second = Double.parseDouble(textView2.getText().toString());
+        Double first = clean(textView1.getText());
+        Double second = clean(textView2.getText());
 
         return doEvaluate(first, second);
     }

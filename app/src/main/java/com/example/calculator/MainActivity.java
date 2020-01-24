@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import com.example.calculator.exceptions.DivisionByZeroException;
@@ -20,55 +21,20 @@ public class MainActivity extends AppCompatActivity {
     private EditText secondOperand;
     private TextView operationField;
 
-    private Operation lastOperation = new NullOperation();
+    private Operation lastOperation = NullOperation.getInstance();
+
+    public void onPointClick(View v) {
+        Button button = (Button) v;
+
+        if (!secondOperand.getText().toString().contains(button.getText())) {
+            secondOperand.append(button.getText());
+        }
+    }
 
     public void onNumberClick(View v) {
         Button btn = (Button) v;
 
-//        if (lastOperation == "=" && firstOperand != null) {
-//            firstOperand = null;
-//            inputField.setText("");
-//        }
-
         secondOperand.append(btn.getText());
-    }
-
-    private void evaluateSecondOperand() throws NumberFormatException {
-//        String text = inputField.getText().toString().trim().replace(',', '.');
-//        this.secondOperand = (text.length() == 0) ? null : Double.parseDouble(text);
-    }
-
-    public void onOperationClick(View view) throws Exception {
-        Button button = (Button) view;
-        String newOperation = button.getText().toString();
-
-//        try {
-//            evaluateSecondOperand();
-//            Double result = performOperation(firstOperand, lastOperation, secondOperand);
-
-//            bufferField.setText(result.toString());
-//            firstOperand = result;
-//            inputField.setText("");
-//            operationField.setText(newOperation);
-//        } catch (NumberFormatException e) {
-//            inputField.setText("");
-//        } catch (DivisionByZeroException e) {
-//            inputField.setText("");
-//        } catch (NullOperandException e) {
-//
-//            switch (e.getOperand()) {
-//                case FIRST:
-//                    firstOperand = secondOperand;
-//                    bufferField.setText(secondOperand.toString());
-//
-//                case SECOND:
-//                    setOperation(newOperation);
-//                    break;
-//            }
-
-//        } catch (NotSupportedOperation e) {
-//            e.printStackTrace();
-//        }
     }
 
     private void placeCursorToEnd(EditText editText) {
@@ -78,32 +44,38 @@ public class MainActivity extends AppCompatActivity {
     public void onFunctionalKeyClick(View view) {
         Button btn = (Button) view;
 
-        switch ((String) btn.getText()) {
-            case "=":
+        switch (btn.getId()) {
+            case R.id.equals:
+                Double result = this.lastOperation.evaluate();
+                setFirstOperand(result);
+                setSecondOperand(null);
+                this.lastOperation = NullOperation.getInstance();
+                this.operationField.setText("");
 
-//                try {
-//                evaluateSecondOperand();
-//                    String result = performOperation(firstOperand, lastOperation, secondOperand).toString();
-//                setOperation();
-//                setFirstOperand(null);
-//                    inputField.setText(result);
-//                placeCursorToEnd(inputField);
-//                } catch (NumberFormatException | NullOperandException | DivisionByZeroException | NotSupportedOperation e) {
-//                    inputField.setText("");
-//                }
-
+                break;
+            case R.id.pi:
+                this.setSecondOperand(Math.PI);
                 break;
         }
     }
 
     public void onUnaryOperationClick(View view) throws OperationNotFoundException {
-        Button btn = (Button) view;
+        Button button = (Button) view;
 
-        OperationFactory factory = new UnaryOperationFactory(this.secondOperand);
-        Operation op = factory.getOperation(btn.getId());
+        OperationFactory factory = new UnaryOperationFactory(this.firstOperand);
+        Operation newOperation = factory.getOperation(button.getId());
 
-        evaluateSecondOperand();
-        this.lastOperation = op;
+        try {
+            Double result = this.lastOperation.evaluate();
+            setFirstOperand(result);
+
+            setSecondOperand(newOperation.evaluate());
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG);
+        }
+
+        this.lastOperation = newOperation;
+        this.operationField.setText(button.getText());
     }
 
     public void onBinaryOperationClick(View view) throws OperationNotFoundException {
@@ -111,19 +83,16 @@ public class MainActivity extends AppCompatActivity {
         OperationFactory factory = new BinaryOperationFactory(firstOperand, secondOperand);
         Operation newOperation = factory.getOperation(button.getId());
 
-//        evaluateSecondOperand();
-        Double result = this.lastOperation.evaluate();
-        setFirstOperand(result);
+        try {
+            Double result = this.lastOperation.evaluate();
+            setFirstOperand(result);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         setSecondOperand(null);
 
         this.lastOperation = newOperation;
         this.operationField.setText(button.getText());
-    }
-
-    public void setOperation(Operation operation) {
-        this.operationField.setText(operation.toString());
-        this.secondOperand.setText("");
-        this.lastOperation = operation;
     }
 
     private String doubleToText(Double var) {
@@ -135,40 +104,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setFirstOperand(Double firstOperandVal) {
-        if (firstOperandVal == null) {
-            firstOperandVal = Double.parseDouble(secondOperand.getText().toString());
-//            setSecondOperand(null);
-        }
+        String text = (firstOperandVal == null) ? secondOperand.getText().toString() : doubleToText(firstOperandVal);
 
-        this.firstOperand.setText(doubleToText(firstOperandVal));
-    }
-
-//    private Double performOperation()
-
-    private Double performOperation(Double first, String operation, Double second) throws NullOperandException, DivisionByZeroException, NotSupportedOperation {
-        if (first == null) {
-            throw new NullOperandException(NullOperandException.OPERAND.FIRST);
-        }
-        if (second == null) {
-            throw new NullOperandException(NullOperandException.OPERAND.SECOND);
-        }
-
-        switch (operation) {
-            case "/":
-                if (second == 0) {
-                    throw new DivisionByZeroException();
-                }
-
-                return first / second;
-            case "*":
-                return first * second;
-            case "+":
-                return first + second;
-            case "-":
-                return first - second;
-            default:
-                throw new NotSupportedOperation(operation);
-        }
+        this.firstOperand.setText(text);
     }
 
     @Override
@@ -179,5 +117,18 @@ public class MainActivity extends AppCompatActivity {
         this.firstOperand = findViewById(R.id.bufferField);
         this.operationField = (TextView) findViewById(R.id.operationField);
         this.secondOperand = findViewById(R.id.inputField);
+    }
+
+    public void onClearClick(View view) {
+        this.setSecondOperand(null);
+        this.setFirstOperand(null);
+        this.operationField.setText("");
+        this.lastOperation = NullOperation.getInstance();
+    }
+
+    public void onEraseClick(View view) {
+        String text = this.secondOperand.getText().toString();
+        this.secondOperand.setText(text.substring(0, text.length() - 1));
+        placeCursorToEnd(this.secondOperand);
     }
 }

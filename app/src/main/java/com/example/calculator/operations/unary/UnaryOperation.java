@@ -12,7 +12,7 @@ public abstract class UnaryOperation extends Operation {
 
     @Override
     public Double evaluate() {
-        Double paramV = Double.parseDouble(param.getText().toString());
+        Double paramV = clean(param.getText());
         return doEvaluate(paramV);
     }
 
